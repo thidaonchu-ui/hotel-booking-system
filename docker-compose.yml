@@ -1,0 +1,23 @@
+
+services:
+  backend:
+    build: ./backend
+    container_name: hotel-booking-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      MONGO_URI: mongodb://host.docker.internal:27017/hotel_booking
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:5000
+    container_name: hotel-booking-frontend
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
