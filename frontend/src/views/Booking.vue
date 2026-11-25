@@ -48,7 +48,7 @@ const totalPrice = computed(() => {
 async function fetchHotel() {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/hotels/${route.params.id}`
+      `${API_URL}/api/hotels/${route.params.id}`
     )
 
     if (!response.ok) throw new Error('Hotel not found')
@@ -80,7 +80,7 @@ async function submitBooking() {
   try {
     submitting.value = true
 
-    const response = await fetch('http://localhost:5000/api/bookings', {
+    const response = await fetch(`${API_URL}/api/bookings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
