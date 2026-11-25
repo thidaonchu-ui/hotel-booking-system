@@ -22,7 +22,7 @@ const error = ref('')
 async function fetchHotel() {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/hotels/${route.params.id}`
+      `${API_URL}/api/hotels/${route.params.id}`
     )
 
     if (!response.ok) {
@@ -59,18 +59,11 @@ onMounted(fetchHotel)
 
       <div class="hotel-info">
         <p class="eyebrow">HOTEL INFORMATION</p>
-
         <h1>{{ hotel.name }}</h1>
-
         <p class="location">📍 {{ hotel.location }}</p>
-
         <p class="rating">★ {{ hotel.rating || 'New' }} Rating</p>
-
         <h2>About this hotel</h2>
-
-        <p class="description">
-          {{ hotel.description }}
-        </p>
+        <p class="description">{{ hotel.description }}</p>
 
         <p class="price">
           ${{ hotel.pricePerNight }}
@@ -136,8 +129,7 @@ h1 {
   font-size: 36px;
 }
 
-.location,
-.description {
+.location, .description {
   color: #718085;
   margin: 12px 0;
   line-height: 1.8;
